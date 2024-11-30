@@ -1,0 +1,26 @@
+[
+  {
+    "provider_id": "80ffbfca-5277-46e1-b337-4add8e3924ec",
+    "name": "Alberto",
+    "phone_number": "55555555",
+    "email": "alberto@gmail.com"
+  },
+  {
+    "provider_id": "fbc5921c-3ddf-45af-8a11-38839be8dcb2",
+    "name": "Pedro",
+    "phone_number": "66666666",
+    "email": "pedro@gmail.com"
+  },
+  {
+    "provider_id": "2705cdd9-d161-4290-a261-47f61e30f3cd",
+    "name": "Juan",
+    "phone_number": "77777777",
+    "email": "juan@gmail.com"
+  },
+  {
+    "provider_id": "fc61fa78-dd26-4b52-8167-d2584330b0ce",
+    "name": "Martin",
+    "phone_number": "88888888",
+    "email": "martin@gmail.com"
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "purchases_id": "676ada27-facb-4714-aabc-d0803b89031c",
+    "products_id": "8430e73f-bab7-4592-98f7-c8af91d6aadc",
+    "quantity": 1,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 2000,
+    "total_amount": 2000
+  },
+  {
+    "purchases_id": "bddf703f-39bd-4385-ae45-dacd2331efb6",
+    "products_id": "2be6643f-0b4f-4f1e-89a2-6120a89276f1",
+    "quantity": 2,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 2000,
+    "total_amount": 4000
+  },
+  {
+    "purchases_id": "49b28bf2-0787-4c37-b46c-85d350bad493",
+    "products_id": "e3f183ed-1156-4bce-a4d7-e6f91633e257",
+    "quantity": 3,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 10000,
+    "total_amount": 30000
+  },
+  {
+    "purchases_id": "aaee41aa-87e9-4af4-8d57-1a3316dd80cc",
+    "products_id": "a474867a-0b29-4439-9c87-12c26adfcc24",
+    "quantity": 1,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 20000,
+    "total_amount": 20000
+  }
+]

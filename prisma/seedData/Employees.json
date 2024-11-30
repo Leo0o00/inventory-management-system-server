@@ -1,0 +1,47 @@
+[
+  {
+    "employee_id": "5fd426e6-d515-4e7a-8ff9-a10be82cfc20",
+    "CID": "11111111111",
+    "first_name": "Patricio",
+    "last_name": "Estrella",
+    "address": "Fondo de bikini",
+    "phone_number": "56565656",
+    "point_of_sales_id": "bff9b7b6-b737-411c-92ae-737ac97711b7"
+  },
+  {
+    "employee_id": "9a90dbc7-49e5-4273-9885-3193d2e554c2",
+    "CID": "22222222222",
+    "first_name": "Bob",
+    "last_name": "Esponja",
+    "address": "Fondo de bikini",
+    "phone_number": "65656565",
+    "point_of_sales_id": "bff9b7b6-b737-411c-92ae-737ac97711b7"
+  },
+  {
+    "employee_id": "4ffca5fa-e395-49ae-8a57-3af5ee71b81c",
+    "CID": "33333333333",
+    "first_name": "Calamardo",
+    "last_name": "Guachineo",
+    "address": "Fondo de bikini",
+    "phone_number": "55555555",
+    "point_of_sales_id": "bff9b7b6-b737-411c-92ae-737ac97711b7"
+  },
+  {
+    "employee_id": "5c5adca4-16e2-401e-8b7a-cbed3bc3ae4a",
+    "CID": "44444444444",
+    "first_name": "Arenita",
+    "last_name": "La Ardilla",
+    "address": "Fondo de bikini",
+    "phone_number": "55555555",
+    "point_of_sales_id": "f619c517-9dbb-43fe-b15f-805a2151145d"
+  },
+  {
+    "employee_id": "753949b3-adde-44ab-93d7-e94dadd1273d",
+    "CID": "55555555555",
+    "first_name": "Don Cangrejo",
+    "last_name": "Chicho",
+    "address": "Fondo de bikini",
+    "phone_number": "55555555",
+    "point_of_sales_id": "c45b5ee2-d5d0-4ba2-914e-cab578106a2f"
+  }
+]

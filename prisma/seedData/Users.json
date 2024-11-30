@@ -1,0 +1,20 @@
+[
+  {
+    "user_id": "4aff2b75-6335-4665-8e92-185e4a127b5e",
+    "username": "Economica",
+    "password": "Economica",
+    "employee_id": "5c5adca4-16e2-401e-8b7a-cbed3bc3ae4a"
+  },
+  {
+    "user_id": "4055d7e7-9164-40fc-80b7-9f1a0e476aab",
+    "username": "Economico",
+    "password": "Economico",
+    "employee_id": "753949b3-adde-44ab-93d7-e94dadd1273d"
+  },
+  {
+    "user_id": "225d7891-d7b9-4d25-a89b-dad19de82797",
+    "username": "Vendedor",
+    "password": "Vendedor",
+    "employee_id": "4ffca5fa-e395-49ae-8a57-3af5ee71b81c"
+  }
+]

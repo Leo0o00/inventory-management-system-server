@@ -1,0 +1,20 @@
+[
+  {
+    "expenses_id": "0a07b68e-af35-4da3-8f18-3a8a03b6c5b8",
+    "amount": 100000,
+    "date": "2024-11-05T23:37:27Z",
+    "exp_category_id": "e635534b-610d-4cc1-9af4-6ff38bec3a0d"
+  },
+  {
+    "expenses_id": "71c56480-7cc1-4fe2-9cc8-4749464998c6",
+    "amount": 20000,
+    "date": "2024-11-05T23:37:27Z",
+    "exp_category_id": "0e24a25c-2c5c-4398-8022-a00d0d4c2640"
+  },
+  {
+    "expenses_id": "e38ab51a-bc82-4a4e-92e8-3bed606b5e64",
+    "amount": 15000,
+    "date": "2024-11-05T23:37:27Z",
+    "exp_category_id": "86703e31-5acf-4afc-a858-d1ba6f666f37"
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "product_id": "8430e73f-bab7-4592-98f7-c8af91d6aadc",
+    "branch": "Cutter",
+    "model": "Backyard Bug Control",
+    "category_id": "b723206a-132b-442c-84db-a990de764957",
+    "description": "Fumigacion de exteriores",
+    "purchase_price": 2000,
+    "purchase_date": "2024-10-05T23:37:27Z",
+    "provider_id": "80ffbfca-5277-46e1-b337-4add8e3924ec",
+    "stock_quantity": 10,
+    "amount": 20000
+  },
+  {
+    "product_id": "2be6643f-0b4f-4f1e-89a2-6120a89276f1",
+    "branch": "Cutter",
+    "model": "Backwoods",
+    "category_id": "b723206a-132b-442c-84db-a990de764957",
+    "description": "Insect Repellent",
+    "purchase_price": 1500,
+    "purchase_date": "2024-10-05T23:37:27Z",
+    "provider_id": "fbc5921c-3ddf-45af-8a11-38839be8dcb2",
+    "stock_quantity": 10,
+    "amount": 15000
+  },
+  {
+    "product_id": "e3f183ed-1156-4bce-a4d7-e6f91633e257",
+    "branch": "DAYTRON",
+    "model": "HB-710",
+    "category_id": "80bcd2f2-f3b3-47f6-85eb-38947e036bde",
+    "description": "Rizador de pelo profesional",
+    "purchase_price": 10000,
+    "purchase_date": "2024-11-25T23:37:27Z",
+    "provider_id": "2705cdd9-d161-4290-a261-47f61e30f3cd",
+    "stock_quantity": 10,
+    "amount": 100000
+  },
+  {
+    "product_id": "a474867a-0b29-4439-9c87-12c26adfcc24",
+    "branch": "Haier",
+    "model": "HRF-250E",
+    "category_id": "80bcd2f2-f3b3-47f6-85eb-38947e036bde",
+    "description": "Refrigerador",
+    "purchase_price": 20000,
+    "purchase_date": "2024-11-02T23:37:27Z",
+    "provider_id": "fc61fa78-dd26-4b52-8167-d2584330b0ce",
+    "stock_quantity": 5,
+    "amount": 100000
+  },
+  {
+    "product_id": "b88c4837-ca1d-42b7-bd00-81588ea9b69b",
+    "branch": "DANKO",
+    "model": "BLDKP901BK",
+    "category_id": "80bcd2f2-f3b3-47f6-85eb-38947e036bde",
+    "description": "Batidora",
+    "purchase_price": 15000,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "80ffbfca-5277-46e1-b337-4add8e3924ec",
+    "stock_quantity": 10,
+    "amount": 150000
+  },
+  {
+    "product_id": "377ba986-30cf-4ee3-b8ef-c501f6e60362",
+    "branch": "Apisun",
+    "model": "Miel",
+    "category_id": "2a6ac5ae-ff11-4108-9d51-9e7a7c829f98",
+    "description": "Miel de abejas",
+    "purchase_price": 300,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "fbc5921c-3ddf-45af-8a11-38839be8dcb2",
+    "stock_quantity": 10,
+    "amount": 3000
+  },
+  {
+    "product_id": "e87be412-19c1-41df-b2f8-6fc94fd06b3d",
+    "branch": "Buenos Dias",
+    "model": "Azucar Refino",
+    "category_id": "2a6ac5ae-ff11-4108-9d51-9e7a7c829f98",
+    "description": "Saco de 55kg",
+    "purchase_price": 40000,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "fbc5921c-3ddf-45af-8a11-38839be8dcb2",
+    "stock_quantity": 10,
+    "amount": 400000
+  },
+  {
+    "product_id": "033e37c7-da41-4c3e-aa0f-81142d00d8d1",
+    "branch": "Apple",
+    "model": "Iphone 11 Pro Max",
+    "category_id": "18a778c3-e8bb-4ac5-bea7-857ecd36e457",
+    "description": "Almacenamiento: 64GB, Color: Negro",
+    "purchase_price": 90000,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "2705cdd9-d161-4290-a261-47f61e30f3cd",
+    "stock_quantity": 10,
+    "amount": 900000
+  },
+  {
+    "product_id": "0eeb968c-813c-4186-9f34-aa95e42a08a6",
+    "branch": "Huawei",
+    "model": "Honor 10 Lite",
+    "category_id": "18a778c3-e8bb-4ac5-bea7-857ecd36e457",
+    "description": "Almacenamiento: 64GB, Color: Blanco",
+    "purchase_price": 20000,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "fc61fa78-dd26-4b52-8167-d2584330b0ce",
+    "stock_quantity": 10,
+    "amount": 200000
+  },
+  {
+    "product_id": "504953f2-6609-47f6-b991-95b023f0cdaf",
+    "branch": "Xiaomi Redmi",
+    "model": "13C",
+    "category_id": "18a778c3-e8bb-4ac5-bea7-857ecd36e457",
+    "description": "Almacenamiento: 256GB, Color: Verde",
+    "purchase_price": 30000,
+    "purchase_date": "2024-10-08T23:37:27Z",
+    "provider_id": "80ffbfca-5277-46e1-b337-4add8e3924ec",
+    "stock_quantity": 10,
+    "amount": 300000
+  }
+]

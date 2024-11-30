@@ -1,0 +1,38 @@
+[
+  {
+    "sales_id": "ff829ef1-5947-469a-8957-73044321f334",
+    "products_id": "8430e73f-bab7-4592-98f7-c8af91d6aadc",
+    "employee_id": "5fd426e6-d515-4e7a-8ff9-a10be82cfc20",
+    "quantity": 1,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 2500,
+    "total_amount": 2500
+  },
+  {
+    "sales_id": "1293d970-8da7-402d-a394-94cd712fb7ec",
+    "products_id": "2be6643f-0b4f-4f1e-89a2-6120a89276f1",
+    "employee_id": "5fd426e6-d515-4e7a-8ff9-a10be82cfc20",
+    "quantity": 2,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 2000,
+    "total_amount": 4000
+  },
+  {
+    "sales_id": "75da1887-6d8f-4f28-b295-ce6719195fee",
+    "products_id": "e3f183ed-1156-4bce-a4d7-e6f91633e257",
+    "employee_id": "5fd426e6-d515-4e7a-8ff9-a10be82cfc20",
+    "quantity": 3,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 10000,
+    "total_amount": 30000
+  },
+  {
+    "sales_id": "2afd6627-d58b-45f8-b226-46a823fba123",
+    "products_id": "a474867a-0b29-4439-9c87-12c26adfcc24",
+    "employee_id": "9a90dbc7-49e5-4273-9885-3193d2e554c2",
+    "quantity": 1,
+    "date": "2024-11-05T23:37:27Z",
+    "unit_price": 20000,
+    "total_amount": 20000
+  }
+]
