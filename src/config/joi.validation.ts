@@ -11,7 +11,6 @@ export const isValidQuery = Joi.object({
 });
 
 export const isValidProduct = Joi.object({
-    product_id: isUuid.required(),
     branch: Joi.string().min(2).max(45).required(),
     model: Joi.string().min(2).max(45).required(),
     description: Joi.string().min(3).max(255).required(),
@@ -36,3 +35,5 @@ export const isValidUpdateProduct = Joi.object({
     amount: Joi.number().positive(),
     points_of_sales_id: isUuid
 });
+
+export const isValidProductCategory = Joi.string().min(2).max(45).required();

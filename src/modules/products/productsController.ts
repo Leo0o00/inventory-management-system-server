@@ -1,8 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import { create, getOne, list, remove, update } from "./productsService";
 import { UUID } from "crypto";
 import { isUuid, isValidProduct, isValidQuery, isValidUpdateProduct } from "../../config/joi.validation";
+import { create, getOne, list, remove, update } from "./productsService";
 import { CreateProductDTO } from "./dto/createProductDTO";
+
+
+
 
 export async function listProducts(req: Request, res: Response, next: NextFunction) {
     try {
@@ -15,9 +18,7 @@ export async function listProducts(req: Request, res: Response, next: NextFuncti
         isValidQuery.validateAsync(req.query).catch(() => {
             res.status(400).json({ message: "Invalid query params" });
         });
-        // isPositiveInt.validateAsync({ offset, limit }).catch(() => {
-        //     res.status(400).json({ message: "Invalid offset or limit" });
-        // });
+        
 
         const products = await list({
             offset: offset,
@@ -55,7 +56,8 @@ export async function getProduct(req: Request, res: Response, next: NextFunction
 
 export async function createProduct(req: Request, res: Response, next: NextFunction) {
     try {
-        
+        console.log("req.body", req.body);
+        console.log("req.file", req.file);
         const products = req.body;
         
         if (!products) {
@@ -120,18 +122,51 @@ export async function createProduct(req: Request, res: Response, next: NextFunct
                 }
             })
         } catch (error: any) {
-            return next(error);
+            next(error);
         }
     } catch (error: any) {
         next(new Error(`Unespected error processing the request.`));
     }
 }
 
+// export async function setProductImage (req: Request, res: Response, next: NextFunction) {
+//     //La request debe verse asi
+//     //curl -X POST -H "Content-Type: image/jpeg" --data-binary @thedude.jpg http://localhost:1337/products/cjvzbkbv00000n2glbfrfgelx/image
+    
+
+
+//     const productId = req.params.id;
+//     const s3 = new AWS.S3();
+//     s3.uploadP = promisify(s3.upload);
+
+//     const ext = {
+//         'image/png': 'png',
+//         'image/jpeg': 'jpeg'
+//     }[req.headers['content-type']];
+
+//     if (!ext) throw new Error('Invalid Image Type');
+
+//     const params = {
+//         Bucket: 'Print-Shop',
+//         Key: `product-images/${productId}.${ext}`,
+//         Body: req, //req es un stream, similar a fs.createReadStream()
+//         ACL: 'public-read'
+//     }
+//     try {
+//         const object = await s3.uploadP(params); //mi propia version de la promesa
+
+//         const change = { img: object.Location };
+//         const product = await Products.edit(productId, change);
+
+//         res.json(product);
+//     } catch (err){
+//         next(err);
+//     }
+// }
+
 export async function updateProduct(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
     const properties = req.body;
-    
-    
     
     try {
         
@@ -146,13 +181,14 @@ export async function updateProduct(req: Request, res: Response, next: NextFunct
         const updatedProduct = await update(id as UUID, properties);
         if (!updatedProduct) {
             res.status(404).json({ message: "Product not found" });
+        } else {
+            res.json({
+                status: "success",
+                message: "Product updated successfully",
+                data: updatedProduct
+            });
         }
 
-        res.json({
-            status: "success",
-            message: "Product updated successfully",
-            data: updatedProduct
-        });
     } catch (error) {
         next(error);
     }
@@ -167,10 +203,11 @@ export async function deleteProduct(req: Request, res: Response, next: NextFunct
             res.status(400).json({ message: "Invalid product ID" });
         });
 
-        await remove(id as UUID);
+        const result = await remove(id as UUID);
         res.status(200).send({
             status: "success",
-            message: "Product deleted successfully"
+            message: "Product deleted successfully",
+            data: result
         });
 
     } catch (error) {

@@ -119,7 +119,6 @@ function create(entries) {
         try {
             const products = yield prisma.$transaction(entries.map((entry) => prisma.products.create({
                 data: {
-                    product_id: entry.product_id,
                     branch: entry.branch,
                     model: entry.model,
                     description: entry.description,
@@ -155,10 +154,6 @@ function create(entries) {
                 switch (error.code) {
                     case 'P2002':
                         throw new Error('A unique constraint would be violated.');
-                    case 'P2003':
-                        throw new Error('Foreign key constraint failed - one or more referenced IDs do not exist.');
-                    case 'P2025':
-                        throw new Error('Record not found - referenced category, provider, or point of sale does not exist.');
                     default:
                         throw new Error(`Error creating products: ${error.message}`);
                 }
@@ -198,12 +193,21 @@ function remove(id) {
             yield prisma.products.delete({
                 where: {
                     product_id: product.product_id
+                },
+                select: {
+                    product_id: true
                 }
             });
+            return product;
         }
         catch (error) {
             console.error(error);
-            throw new Error(`Error deleting product with id ${id}`);
+            if (error.message) {
+                throw error;
+            }
+            else {
+                throw new Error(`Error deleting product with id ${id}`);
+            }
         }
     });
 }

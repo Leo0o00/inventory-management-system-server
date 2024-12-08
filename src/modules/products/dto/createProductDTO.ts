@@ -1,6 +1,5 @@
 
 export interface CreateProductDTO {
-    product_id: string;
     branch: string;
     model: string;
     description: string;

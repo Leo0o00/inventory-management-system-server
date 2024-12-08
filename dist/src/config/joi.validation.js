@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidUpdateProduct = exports.isValidProduct = exports.isValidQuery = exports.isUuid = void 0;
+exports.isValidProductCategory = exports.isValidUpdateProduct = exports.isValidProduct = exports.isValidQuery = exports.isUuid = void 0;
 const Joi = __importStar(require("joi"));
 exports.isUuid = Joi.string().guid({ version: "uuidv4" });
 exports.isValidQuery = Joi.object({
@@ -34,7 +34,6 @@ exports.isValidQuery = Joi.object({
     points_of_sales: Joi.string().default('')
 });
 exports.isValidProduct = Joi.object({
-    product_id: exports.isUuid.required(),
     branch: Joi.string().min(2).max(45).required(),
     model: Joi.string().min(2).max(45).required(),
     description: Joi.string().min(3).max(255).required(),
@@ -58,3 +57,4 @@ exports.isValidUpdateProduct = Joi.object({
     amount: Joi.number().positive(),
     points_of_sales_id: exports.isUuid
 });
+exports.isValidProductCategory = Joi.string().min(2).max(45).required();
