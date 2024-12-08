@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Points_of_sales {
-  pos_id      String      @id @default(uuid()) @db.Uuid
+  pos_id      String      @id @default(uuid())
   name        String      @db.VarChar(45)
   address     String      @db.VarChar(100)
   employees   Employees[]
@@ -24,14 +24,14 @@ model Points_of_sales {
 }
 
 model Products_categories {
-  category_id String     @id @default(uuid()) @db.Uuid
+  category_id String     @id @default(uuid())
   name        String     @unique @db.VarChar(45)
   products    Products[]
   last_update DateTime   @updatedAt
 }
 
 model Providers {
-  provider_id  String     @id @default(uuid()) @db.Uuid
+  provider_id  String     @id @default(uuid())
   name         String     @db.VarChar(45)
   phone_number String     @db.VarChar(45)
   email        String?    @db.VarChar(100)
@@ -40,14 +40,14 @@ model Providers {
 }
 
 model Employees {
-  employee_id       String          @id @default(uuid()) @db.Uuid
+  employee_id       String          @id @default(uuid())
   CID               String          @unique @db.VarChar(11)
   first_name        String          @db.VarChar(45)
   last_name         String          @db.VarChar(45)
   address           String          @db.VarChar(100)
   phone_number      String          @db.VarChar(45)
-  point_of_sales_id String          @db.Uuid
-  point_of_sales    Points_of_sales @relation(fields: [point_of_sales_id], references: [pos_id], onDelete: SetNull, onUpdate: Cascade)
+  point_of_sales_id String          @default("null")
+  point_of_sales    Points_of_sales @relation(fields: [point_of_sales_id], references: [pos_id], onDelete: SetDefault, onUpdate: Cascade)
   sales             Sales[]
   user              Users?
   salary            Salary?
@@ -55,47 +55,47 @@ model Employees {
 }
 
 model Expenses_category {
-  category_id String     @id @default(uuid()) @db.Uuid
+  category_id String     @id @default(uuid())
   name        String     @db.VarChar(45)
   expenses    Expenses[]
   last_update DateTime   @updatedAt
 }
 
 model Products {
-  product_id         String               @id @default(uuid()) @db.Uuid
+  product_id         String               @id @default(uuid())
   branch             String               @db.VarChar(45)
   model              String               @db.VarChar(45)
-  category_id        String
-  category           Products_categories? @relation(fields: [category_id], references: [category_id], onDelete: SetNull, onUpdate: Cascade)
+  category_id        String               @default("null")
+  category           Products_categories? @relation(fields: [category_id], references: [category_id], onDelete: SetDefault, onUpdate: Cascade)
   description        String               @db.VarChar(255)
   purchase_price     Decimal              @db.Decimal(10, 2)
   purchase_date      DateTime
-  provider_id        String
-  provider           Providers?           @relation(fields: [provider_id], references: [provider_id], onDelete: SetNull, onUpdate: Cascade)
+  provider_id        String               @default("null")
+  provider           Providers?           @relation(fields: [provider_id], references: [provider_id], onDelete: SetDefault, onUpdate: Cascade)
   stock_quantity     Int
   amount             Decimal              @db.Decimal(10, 2)
   sales              Sales[]
   purchases          Purchases[]
   last_update        DateTime             @updatedAt
-  points_of_sales_id String
-  points_of_sales    Points_of_sales?     @relation(fields: [points_of_sales_id], references: [pos_id], onDelete: SetNull, onUpdate: Cascade)
+  points_of_sales_id String               @default("null")
+  points_of_sales    Points_of_sales?     @relation(fields: [points_of_sales_id], references: [pos_id], onDelete: SetDefault, onUpdate: Cascade)
 }
 
 model Salary {
-  salary_id   String    @id @default(uuid()) @db.Uuid
-  employee_id String    @unique @db.Uuid
-  employee    Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
+  salary_id   String    @id @default(uuid())
+  employee_id String    @unique @default("null")
+  employee    Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetDefault, onUpdate: Cascade)
   amount      Decimal   @db.Decimal(10, 2)
   date        DateTime
   last_update DateTime  @updatedAt
 }
 
 model Sales {
-  sales_id     String    @id @default(uuid()) @db.Uuid
-  products_id  String    @db.Uuid
-  products     Products  @relation(fields: [products_id], references: [product_id], onDelete: SetNull, onUpdate: Cascade)
-  employee_id  String    @db.Uuid
-  employee     Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
+  sales_id     String    @id @default(uuid())
+  products_id  String    @default("null")
+  products     Products  @relation(fields: [products_id], references: [product_id], onDelete: SetDefault, onUpdate: Cascade)
+  employee_id  String    @default("null")
+  employee     Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetDefault, onUpdate: Cascade)
   quantity     Int
   date         DateTime
   unit_price   Decimal   @db.Decimal(10, 2)
@@ -104,9 +104,9 @@ model Sales {
 }
 
 model Purchases {
-  purchases_id String   @id @default(uuid()) @db.Uuid
-  products_id  String   @db.Uuid
-  products     Products @relation(fields: [products_id], references: [product_id], onDelete: SetNull, onUpdate: Cascade)
+  purchases_id String   @id @default(uuid())
+  products_id  String   @default("null")
+  products     Products @relation(fields: [products_id], references: [product_id], onDelete: SetDefault, onUpdate: Cascade)
   quantity     Int
   date         DateTime
   unit_price   Decimal  @db.Decimal(10, 2)
@@ -115,20 +115,20 @@ model Purchases {
 }
 
 model Expenses {
-  expenses_id     String            @id @default(uuid()) @db.Uuid
+  expenses_id     String            @id @default(uuid())
   amount          Decimal           @db.Decimal(10, 2)
   date            DateTime
-  exp_category_id String            @db.Uuid
-  exp_category    Expenses_category @relation(fields: [exp_category_id], references: [category_id], onDelete: SetNull, onUpdate: Cascade)
+  exp_category_id String            @default("null")
+  exp_category    Expenses_category @relation(fields: [exp_category_id], references: [category_id], onDelete: SetDefault, onUpdate: Cascade)
   last_update     DateTime          @updatedAt
 }
 
 model Users {
-  user_id          String     @id @default(uuid()) @db.Uuid
+  user_id          String     @id @default(uuid())
   username         String     @db.VarChar(16)
   password         String
-  employee_id      String     @unique @db.Uuid
-  employee         Employees? @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
+  employee_id      String     @unique @default("null")
+  employee         Employees? @relation(fields: [employee_id], references: [employee_id], onDelete: SetDefault, onUpdate: Cascade)
   created_at       DateTime   @default(now())
   last_time_online DateTime?
   last_update      DateTime   @updatedAt
