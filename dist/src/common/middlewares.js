@@ -8,6 +8,7 @@ exports.handleErrors = handleErrors;
 const multer_1 = __importDefault(require("multer"));
 const storage = multer_1.default.memoryStorage();
 exports.upload = (0, multer_1.default)({ storage: storage });
+// Error handler middleware
 function handleErrors(err, req, res, next) {
     const errStatus = err.statusCode || 500;
     //const errMsg = STATUS_CODES[errStatus] || err.message || 'Internal Error';

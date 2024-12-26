@@ -15,120 +15,156 @@ datasource db {
 }
 
 model Points_of_sales {
-  pos_id      String      @id @default(uuid()) @db.Uuid
-  name        String      @db.VarChar(45)
-  address     String      @db.VarChar(100)
-  employees   Employees[]
-  products    Products[]
-  last_update DateTime    @updatedAt
+  point_of_sales_id String      @id @default(uuid()) @db.Uuid
+  name              String      @unique @db.VarChar(45)
+  address           String      @db.VarChar(100)
+  img               String?     @default("no-image") @db.VarChar()
+  employees         Employees[]
+  products          Products[]
+
+  created_at  DateTime @default(now())
+  last_update DateTime @updatedAt
 }
 
 model Products_categories {
-  category_id String     @id @default(uuid()) @db.Uuid
-  name        String     @unique @db.VarChar(45)
-  products    Products[]
-  last_update DateTime   @updatedAt
+  products_categories_id String     @id @default(uuid()) @db.Uuid
+  name                   String     @unique @db.VarChar(45)
+  products               Products[]
+  created_at             DateTime   @default(now())
+  last_update            DateTime   @updatedAt
 }
 
 model Providers {
   provider_id  String     @id @default(uuid()) @db.Uuid
-  name         String     @db.VarChar(45)
-  phone_number String     @db.VarChar(45)
-  email        String?    @db.VarChar(100)
+  name         String     @unique @db.VarChar(45)
+  phone_number String     @unique @db.VarChar(45)
+  email        String?    @unique @db.VarChar(100)
+  img          String?    @default("no-image") @db.VarChar()
   products     Products[]
+  created_at   DateTime   @default(now())
   last_update  DateTime   @updatedAt
 }
 
-model Employees {
-  employee_id       String          @id @default(uuid()) @db.Uuid
-  CID               String          @unique @db.VarChar(11)
-  first_name        String          @db.VarChar(45)
-  last_name         String          @db.VarChar(45)
-  address           String          @db.VarChar(100)
-  phone_number      String          @db.VarChar(45)
-  point_of_sales_id String          @db.Uuid
-  point_of_sales    Points_of_sales @relation(fields: [point_of_sales_id], references: [pos_id], onDelete: SetNull, onUpdate: Cascade)
-  sales             Sales[]
-  user              Users?
-  salary            Salary?
-  last_update       DateTime        @updatedAt
-}
-
-model Expenses_category {
-  category_id String     @id @default(uuid()) @db.Uuid
-  name        String     @db.VarChar(45)
-  expenses    Expenses[]
-  last_update DateTime   @updatedAt
-}
-
 model Products {
-  product_id         String               @id @default(uuid()) @db.Uuid
-  branch             String               @db.VarChar(45)
-  model              String               @db.VarChar(45)
-  category_id        String
-  category           Products_categories? @relation(fields: [category_id], references: [category_id], onDelete: SetNull, onUpdate: Cascade)
-  description        String               @db.VarChar(255)
-  purchase_price     Decimal              @db.Decimal(10, 2)
-  purchase_date      DateTime
-  provider_id        String
-  provider           Providers?           @relation(fields: [provider_id], references: [provider_id], onDelete: SetNull, onUpdate: Cascade)
-  stock_quantity     Int
-  amount             Decimal              @db.Decimal(10, 2)
-  sales              Sales[]
-  purchases          Purchases[]
-  last_update        DateTime             @updatedAt
-  points_of_sales_id String
-  points_of_sales    Points_of_sales?     @relation(fields: [points_of_sales_id], references: [pos_id], onDelete: SetNull, onUpdate: Cascade)
+  product_id      String              @id @default(uuid()) @db.Uuid
+  branch          String              @db.VarChar(45)
+  model           String              @db.VarChar(45)
+  description     String              @db.VarChar(255)
+  purchase_price  Decimal             @db.Decimal(10, 2)
+  stock_quantity  Int
+  amount          Decimal             @db.Decimal(10, 2)
+  purchase_date   DateTime
+  category_name   String
+  category        Products_categories @relation(fields: [category_name], references: [name], onDelete: Restrict, onUpdate: Cascade)
+  provider_name   String
+  provider        Providers           @relation(fields: [provider_name], references: [name], onDelete: Restrict, onUpdate: Cascade)
+  pos_name        String
+  points_of_sales Points_of_sales     @relation(fields: [pos_name], references: [name], onDelete: Restrict, onUpdate: Cascade)
+  img             Products_images[]
+  products_sales  Products_sales[]
+  purchases       Purchases[]
+  created_at      DateTime            @default(now())
+  last_update     DateTime            @updatedAt
+}
+
+model Products_images {
+  id         String   @db.Uuid
+  product    Products @relation(fields: [id], references: [product_id], onDelete: Cascade, onUpdate: Cascade)
+  image_name String   @unique
+}
+
+model Employees {
+  employee_id    String          @id @default(uuid()) @db.Uuid
+  CID            String          @unique @db.VarChar(11)
+  first_name     String          @db.VarChar(45)
+  last_name      String          @db.VarChar(45)
+  address        String          @db.VarChar(100)
+  phone_number   String?         @unique @db.VarChar(45)
+  img            String?         @default("no-image") @db.VarChar()
+  pos_name       String
+  point_of_sales Points_of_sales @relation(fields: [pos_name], references: [name], onDelete: Restrict, onUpdate: Cascade)
+  sales          Sales[]
+  user           Users?
+  salary         Salary?
+  created_at     DateTime        @default(now())
+  last_update    DateTime        @updatedAt
 }
 
 model Salary {
-  salary_id   String    @id @default(uuid()) @db.Uuid
-  employee_id String    @unique @db.Uuid
-  employee    Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
-  amount      Decimal   @db.Decimal(10, 2)
-  date        DateTime
-  last_update DateTime  @updatedAt
+  employee_cid String    @unique
+  employee     Employees @relation(fields: [employee_cid], references: [CID], onDelete: Restrict, onUpdate: Cascade)
+  amount       Decimal   @db.Decimal(10, 2)
+  date         DateTime  @db.Date
+  created_at   DateTime  @default(now())
+  last_update  DateTime  @updatedAt
 }
 
 model Sales {
-  sales_id     String    @id @default(uuid()) @db.Uuid
-  products_id  String    @db.Uuid
-  products     Products  @relation(fields: [products_id], references: [product_id], onDelete: SetNull, onUpdate: Cascade)
-  employee_id  String    @db.Uuid
-  employee     Employees @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
-  quantity     Int
-  date         DateTime
-  unit_price   Decimal   @db.Decimal(10, 2)
-  total_amount Decimal   @db.Decimal(10, 2)
-  last_update  DateTime  @updatedAt
+  sales_id       String           @id @default(uuid()) @db.Uuid
+  products_sales Products_sales[]
+  employee_cid   String
+  employee       Employees        @relation(fields: [employee_cid], references: [CID], onDelete: Restrict, onUpdate: Cascade)
+  quantity       Int
+  date           DateTime         @db.Date
+  total_amount   Decimal          @db.Decimal(10, 2)
+  created_at     DateTime         @default(now())
+  last_update    DateTime         @updatedAt
+}
+
+model Products_sales {
+  sale_id          String   @db.Uuid
+  sale             Sales    @relation(fields: [sale_id], references: [sales_id], onDelete: Restrict, onUpdate: Cascade)
+  product_id       String   @db.Uuid
+  product          Products @relation(fields: [product_id], references: [product_id], onDelete: Restrict, onUpdate: Cascade)
+  quantity         Int
+  unit_price       Decimal  @db.Decimal(10, 2)
+  discount_percent Int?     @default(0)
+  total_price      Decimal  @db.Decimal(10, 2)
+
+  @@id([sale_id, product_id])
 }
 
 model Purchases {
   purchases_id String   @id @default(uuid()) @db.Uuid
   products_id  String   @db.Uuid
-  products     Products @relation(fields: [products_id], references: [product_id], onDelete: SetNull, onUpdate: Cascade)
+  products     Products @relation(fields: [products_id], references: [product_id], onDelete: Restrict, onUpdate: Cascade)
   quantity     Int
   date         DateTime
   unit_price   Decimal  @db.Decimal(10, 2)
   total_amount Decimal  @db.Decimal(10, 2)
+  created_at   DateTime @default(now())
   last_update  DateTime @updatedAt
 }
 
+// model Products_purchases {
+
+// }
+
+model Expenses_category {
+  expense_category_id String     @id @default(uuid()) @db.Uuid
+  name                String     @unique @db.VarChar(45)
+  expenses            Expenses[]
+  created_at          DateTime   @default(now())
+  last_update         DateTime   @updatedAt
+}
+
 model Expenses {
-  expenses_id     String            @id @default(uuid()) @db.Uuid
-  amount          Decimal           @db.Decimal(10, 2)
-  date            DateTime
-  exp_category_id String            @db.Uuid
-  exp_category    Expenses_category @relation(fields: [exp_category_id], references: [category_id], onDelete: SetNull, onUpdate: Cascade)
-  last_update     DateTime          @updatedAt
+  expenses_id       String            @id @default(uuid()) @db.Uuid
+  amount            Decimal           @db.Decimal(10, 2)
+  date              DateTime
+  exp_category_name String
+  exp_category      Expenses_category @relation(fields: [exp_category_name], references: [name], onDelete: Restrict, onUpdate: Cascade)
+  created_at        DateTime          @default(now())
+  last_update       DateTime          @updatedAt
 }
 
 model Users {
   user_id          String     @id @default(uuid()) @db.Uuid
-  username         String     @db.VarChar(16)
+  username         String     @unique @db.VarChar(16)
   password         String
   employee_id      String     @unique @db.Uuid
-  employee         Employees? @relation(fields: [employee_id], references: [employee_id], onDelete: SetNull, onUpdate: Cascade)
+  employee         Employees? @relation(fields: [employee_id], references: [employee_id], onDelete: Restrict, onUpdate: Cascade)
+  role             String
   created_at       DateTime   @default(now())
   last_time_online DateTime?
   last_update      DateTime   @updatedAt

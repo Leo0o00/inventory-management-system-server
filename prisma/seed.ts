@@ -26,19 +26,21 @@ async function main() {
     const dataDirectory = path.join(__dirname, "seedData");
 
     const orderedFileNames = [
-        "points_of_sales.json",
-        "products_categories.json",
-        "providers.json",
-        "expenses_category.json",
-
-        "employees.json",
-        "products.json",
-        "expenses.json",
-
-
+        // "points_of_sales.json",
+        // "products_categories.json",
+        // "providers.json",
+        // "products.json",
+        // "employees.json",
+        // "salary.json",
         "sales.json",
-        "purchases.json",
-        "users.json",
+        "products_sales.json",
+        
+        // "expenses_category.json",
+        // "expenses.json",
+
+
+        // "purchases.json",
+        // "users.json",
 
     ];
 

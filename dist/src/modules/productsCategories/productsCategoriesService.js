@@ -18,15 +18,24 @@ const prisma = new client_1.PrismaClient();
 function listCategories() {
     return __awaiter(this, arguments, void 0, function* (opts = {}) {
         const { offset = 0, limit = 25 } = opts;
-        const categories = yield prisma.products_categories.findMany({
-            select: {
-                category_id: true,
-                name: true
-            },
-            skip: offset,
-            take: limit
-        });
-        return categories;
+        try {
+            const categories = yield prisma.products_categories.findMany({
+                select: {
+                    products_categories_id: true,
+                    name: true
+                },
+                skip: offset,
+                take: limit
+            });
+            return categories;
+        }
+        catch (error) {
+            console.error(error);
+            if (error.message) {
+                throw error;
+            }
+            throw new Error("An error ocurring while listing products categories");
+        }
     });
 }
 function createCategory(name) {
@@ -37,7 +46,7 @@ function createCategory(name) {
                     name
                 },
                 select: {
-                    category_id: true,
+                    products_categories_id: true,
                     name: true
                 }
             });
@@ -63,34 +72,40 @@ function updateCategory(id, name) {
         try {
             const category = yield prisma.products_categories.findUnique({
                 where: {
-                    category_id: id
+                    products_categories_id: id
                 }
             });
             if (!category) {
                 return;
             }
-            const existingCategory = yield prisma.products_categories.findUnique({
-                where: {
-                    name: name
-                }
-            });
-            if (existingCategory) {
-                throw new Error("A product category already exists with that name.");
-            }
-            else {
+            try {
                 const result = yield prisma.products_categories.update({
                     where: {
-                        category_id: category.category_id
+                        products_categories_id: category.products_categories_id
                     },
                     data: {
                         name
                     },
                     select: {
-                        category_id: true,
+                        products_categories_id: true,
                         name: true
                     }
                 });
                 return result;
+            }
+            catch (error) {
+                console.error(error);
+                if (error instanceof client_1.Prisma.PrismaClientKnownRequestError) {
+                    // Handle specific Prisma errors
+                    switch (error.code) {
+                        case 'P2002':
+                            error.message = "A product category already exists with that name.";
+                    }
+                }
+                else {
+                    error.message = "An error occurred while updating the product category.";
+                }
+                throw error;
             }
         }
         catch (error) {
@@ -109,15 +124,18 @@ function deleteCategory(id) {
         try {
             const category = yield prisma.products_categories.findUnique({
                 where: {
-                    category_id: id
+                    products_categories_id: id
+                },
+                select: {
+                    name: true
                 }
             });
             if (!category) {
-                throw new Error(`Category with id ${id} not found`);
+                return;
             }
             yield prisma.products_categories.delete({
                 where: {
-                    category_id: category.category_id
+                    name: category.name
                 }
             });
             return category;

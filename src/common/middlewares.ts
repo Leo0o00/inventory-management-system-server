@@ -6,6 +6,7 @@ import ErrorRequest from "./interfaces/error";
 const storage = multer.memoryStorage();
 export const upload = multer({ storage: storage });
 
+// Error handler middleware
 export function handleErrors (err: ErrorRequest, req: Request, res: Response, next: NextFunction) {
     
     const errStatus = err.statusCode || 500;

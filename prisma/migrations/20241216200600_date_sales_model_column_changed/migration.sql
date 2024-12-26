@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Sales" ALTER COLUMN "date" SET DATA TYPE DATE;

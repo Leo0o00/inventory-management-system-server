@@ -1,19 +1,46 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadFile = uploadFile;
+exports.deleteFile = deleteFile;
 const client_s3_1 = require("@aws-sdk/client-s3");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const bucketName = process.env.BUCKET_NAME;
-const bucketRegion = process.env.BUCKET_REGION;
-const accessKey = process.env.ACCESS_KEY;
-const secretAccess_key = process.env.SECRET_ACCESS_KEY;
-const s3 = new client_s3_1.S3Client({
+const env_config_1 = require("../config/env.config");
+const bucketName = env_config_1.EnvConfig.bucket_name;
+const bucketRegion = env_config_1.EnvConfig.bucket_region;
+const accessKey = env_config_1.EnvConfig.access_key;
+const secretAccess_key = env_config_1.EnvConfig.secret_access_key;
+const s3Client = new client_s3_1.S3Client({
     region: bucketRegion,
     credentials: {
         accessKeyId: accessKey,
         secretAccessKey: secretAccess_key,
     }
 });
+function uploadFile(fileBuffer, fileName, mimetype) {
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: fileBuffer,
+        Key: fileName,
+        ContentType: mimetype
+    };
+    return s3Client.send(new client_s3_1.PutObjectCommand(uploadParams));
+}
+function deleteFile(fileName) {
+    const deleteParams = {
+        Bucket: bucketName,
+        Key: fileName,
+    };
+    return s3Client.send(new client_s3_1.DeleteObjectCommand(deleteParams));
+}
+/* export async function getObjectSignedUrl(key: string) {
+  const params = {
+    Bucket: bucketName,
+    Key: key
+  }
+
+  // https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript/
+  const command = new GetObjectCommand(params);
+  const seconds = 60
+  const url = await getSignedUrl(s3Client, command, { expiresIn: seconds });
+
+  return url
+} */
