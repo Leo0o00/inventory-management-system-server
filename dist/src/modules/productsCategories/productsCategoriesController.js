@@ -22,10 +22,15 @@ function listProductsCategories(req, res, next) {
         try {
             if (isNaN(offset) || isNaN(limit)) {
                 res.status(400).json({ message: "Invalid offset or limit" });
+                return;
             }
-            joi_validation_1.isValidQuery.validateAsync(req.query).catch(() => {
+            const queryValidation = yield joi_validation_1.isValidQuery.validateAsync(req.query).catch(() => {
                 res.status(400).json({ message: "Invalid query params" });
+                return false;
             });
+            if (!queryValidation) {
+                return;
+            }
             const categories = yield (0, productsCategoriesService_1.listCategories)({
                 offset: offset,
                 limit: limit
@@ -48,19 +53,23 @@ function postProductsCategories(req, res, next) {
             });
             return;
         }
-        joi_validation_1.isValidProductCategory.validateAsync(name)
-            .catch(() => {
+        const categoryNameValidation = yield joi_validation_1.isValidProductCategory.validateAsync(name)
+            .catch((_) => {
             res.status(400).json({
                 status: "error",
-                message: "Bad Request"
+                message: _.message
             });
+            return false;
         });
+        if (!categoryNameValidation) {
+            return;
+        }
         try {
-            const entry = yield (0, productsCategoriesService_1.createCategory)(name);
+            const result = yield (0, productsCategoriesService_1.createCategory)(name);
             res.status(201).json({
                 status: "success",
                 message: "Product category created successfully",
-                created: entry
+                created: result
             });
         }
         catch (error) {
@@ -71,24 +80,29 @@ function postProductsCategories(req, res, next) {
 }
 function updateProductsCategories(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("req.body", req.body);
-        console.log("req.params", req.params);
-        const { category_id, name } = req.body;
-        joi_validation_1.isUuid.validateAsync(category_id).catch(() => {
+        // console.log("req.body", req.body);
+        // console.log("req.params", req.params);
+        const { productCategory_id, name } = req.body;
+        const uuidValidation = yield joi_validation_1.isUuid.validateAsync(productCategory_id).catch((_) => {
             res.status(400).json({
                 status: "error",
-                message: "Bad Request"
+                message: _.message
             });
+            return false;
         });
-        joi_validation_1.isValidProductCategory.validateAsync(name)
-            .catch(() => {
+        const categoryNameValidation = yield joi_validation_1.isValidProductCategory.validateAsync(name)
+            .catch((_) => {
             res.status(400).json({
                 status: "error",
-                message: "Bad Request"
+                message: _.message
             });
+            return false;
         });
+        if (!uuidValidation || !categoryNameValidation) {
+            return;
+        }
         try {
-            const result = yield (0, productsCategoriesService_1.updateCategory)(category_id, name);
+            const result = yield (0, productsCategoriesService_1.updateCategory)(productCategory_id, name);
             if (!result) {
                 res.status(404).json({
                     status: "error",
@@ -110,15 +124,25 @@ function updateProductsCategories(req, res, next) {
 }
 function removeProductsCategories(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { category_id } = req.body;
-        joi_validation_1.isUuid.validateAsync(category_id).catch(() => {
+        const { productCategory_id } = req.body;
+        const uuidValidation = yield joi_validation_1.isUuid.validateAsync(productCategory_id).catch((_) => {
             res.status(400).json({
                 status: "error",
-                message: "Bad Request"
+                message: _.message
             });
+            return false;
         });
+        if (!uuidValidation) {
+            return;
+        }
         try {
-            const result = yield (0, productsCategoriesService_1.deleteCategory)(category_id);
+            const result = yield (0, productsCategoriesService_1.deleteCategory)(productCategory_id);
+            if (!result) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Product category not found."
+                });
+            }
             res.status(200).json({
                 status: "success",
                 message: "Product category deleted successfully",
