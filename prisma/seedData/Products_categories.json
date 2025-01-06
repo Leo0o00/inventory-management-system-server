@@ -1,18 +1,18 @@
 [
   {
-    "category_id": "80bcd2f2-f3b3-47f6-85eb-38947e036bde",
+    "products_categories_id": "80bcd2f2-f3b3-47f6-85eb-38947e036bde",
     "name": "Electrodomestico"
   },
   {
-    "category_id": "b723206a-132b-442c-84db-a990de764957",
+    "products_categories_id": "b723206a-132b-442c-84db-a990de764957",
     "name": "Herramienta"
   },
   {
-    "category_id": "2a6ac5ae-ff11-4108-9d51-9e7a7c829f98",
+    "products_categories_id": "2a6ac5ae-ff11-4108-9d51-9e7a7c829f98",
     "name": "Materia Prima"
   },
   {
-    "category_id": "18a778c3-e8bb-4ac5-bea7-857ecd36e457",
+    "products_categories_id": "18a778c3-e8bb-4ac5-bea7-857ecd36e457",
     "name": "Celular"
   }
 ]

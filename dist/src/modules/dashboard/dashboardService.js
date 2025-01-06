@@ -40,8 +40,8 @@ function listMetrics() {
         const totalPurchasesByMonth = yield prisma.$queryRawTyped((0, sql_1.getTotalPurchasesByMonth)());
         //Total de gastos del mes(comparar con el total de los meses anteriores del año)(Grafico)
         const totalExpensesByMonth = yield prisma.$queryRawTyped((0, sql_1.getTotalExpensesByMonth)());
-        //Total de gastos del mes(separado por categorias)(Grafico)
-        const totalExpensesThisMonth = yield prisma.$queryRawTyped((0, sql_1.getTotalExpensesThisMonth)());
+        //Total de gastos del mes(separado por categorias)(Grafico) --- Este esta pendiente a cambios
+        // const totalExpensesThisMonth = await prisma.$queryRawTyped(getTotalExpensesThisMonth())
         return {
             popularProducts,
             totalSalesThisMonth,
@@ -54,7 +54,7 @@ function listMetrics() {
             popularProductsThisMonth,
             totalSalesByMonth,
             totalPurchasesByMonth,
-            totalExpensesThisMonth,
+            // totalExpensesThisMonth,
             totalExpensesByMonth
         };
     });

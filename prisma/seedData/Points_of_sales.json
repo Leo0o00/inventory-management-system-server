@@ -1,21 +1,21 @@
 [
   {
-    "pos_id": "bff9b7b6-b737-411c-92ae-737ac97711b7",
+    "point_of_sales_id": "bff9b7b6-b737-411c-92ae-737ac97711b7",
     "name": "Candonga",
     "address": "Hospital"
   },
   {
-    "pos_id": "f619c517-9dbb-43fe-b15f-805a2151145d",
+    "point_of_sales_id": "f619c517-9dbb-43fe-b15f-805a2151145d",
     "name": "Mi casa",
     "address": "Condado"
   },
   {
-    "pos_id": "c45b5ee2-d5d0-4ba2-914e-cab578106a2f",
+    "point_of_sales_id": "c45b5ee2-d5d0-4ba2-914e-cab578106a2f",
     "name": "Punto Placetas",
     "address": "Placetas"
   },
   {
-    "pos_id": "b924a5fe-3435-4042-b1c2-b997e231bf42",
+    "point_of_sales_id": "b924a5fe-3435-4042-b1c2-b997e231bf42",
     "name": "Almacen",
     "address": "Santa Clara"
   }

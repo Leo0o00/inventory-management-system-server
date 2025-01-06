@@ -56,8 +56,8 @@ export async function listMetrics() {
     //Total de gastos del mes(comparar con el total de los meses anteriores del año)(Grafico)
     const totalExpensesByMonth = await prisma.$queryRawTyped(getTotalExpensesByMonth())
 
-    //Total de gastos del mes(separado por categorias)(Grafico)
-    const totalExpensesThisMonth = await prisma.$queryRawTyped(getTotalExpensesThisMonth())
+    //Total de gastos del mes(separado por categorias)(Grafico) --- Este esta pendiente a cambios
+    // const totalExpensesThisMonth = await prisma.$queryRawTyped(getTotalExpensesThisMonth())
     
 
 
@@ -73,7 +73,7 @@ export async function listMetrics() {
         popularProductsThisMonth,
         totalSalesByMonth,
         totalPurchasesByMonth,
-        totalExpensesThisMonth,
+        // totalExpensesThisMonth,
         totalExpensesByMonth
     };
     

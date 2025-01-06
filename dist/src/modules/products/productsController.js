@@ -82,68 +82,6 @@ function getProduct(req, res, next) {
 function createProduct(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log("req.body: ", req.body);
-            console.log("req.files: ", req.files);
-            //     const products = req.body;
-            //     if (!products) {
-            //         res.status(400).json({
-            //             status: "error",
-            //             message: "Bad Request"
-            //         });
-            //         return;
-            //     }
-            //     if (!Array.isArray(products)) {
-            //         res.status(400).json({
-            //             status: "error",
-            //             message: "Bad Request"
-            //         });
-            //         return;
-            //     }
-            //     if (products.length === 0) {
-            //         res.status(400).json({
-            //             status: "error",
-            //             message: "Bad Request. You must submit at least one valid product."
-            //         });
-            //         return;
-            //     }
-            // const validProducts: CreateProductDTO[] = []
-            // const invalidProducts: { product: CreateProductDTO; error: string } [] = [];
-            //     await Promise.all(
-            //         products.map((product: CreateProductDTO) => isValidProduct.validateAsync(product)
-            //         .then(() => {
-            //             validProducts.push(product);
-            //         })
-            //         .catch(() => {
-            //             invalidProducts.push({
-            //                 error: "Invalid product",
-            //                 product
-            //             });
-            //         })
-            //         )
-            //     )
-            //     if (validProducts.length === 0) {
-            //         res.status(400).json({
-            //             status: 'error',
-            //             message: 'No valid products to process',
-            //             invalidProducts
-            //         });
-            //         return;
-            //     }
-            //     try {
-            //         const entries = await create(validProducts);
-            //         res.status(201).json({
-            //             status: "success",
-            //             message: "Products created successfully",
-            //             data: {
-            //                 created: entries,
-            //                 validCount: validProducts.length,
-            //                 invalidProducts: invalidProducts.length > 0 ? invalidProducts : [],
-            //                 invalidCount: invalidProducts.length
-            //             }
-            //         })
-            //     } catch (error: any) {
-            //         next(error);
-            //     }
             // En req.files tenemos todas las imágenes, con sus fieldnames
             // En req.body tenemos los campos de texto con la estructura "products[0][marca]" y así.
             // 1. Identificar cuántos productos se enviaron
